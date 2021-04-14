@@ -3,8 +3,13 @@
     <input v-model="message" 
     @keyup.esc="clearMessage" 
     @keyup.enter="alertMessage"/>
+
     <button @click="clearMessage">Clear</button>
-    <h5 class="border-grey" v-show="message.length">{{ message }}</h5>
+
+    <h5 
+    v-show="message.length"
+    class="border-grey">{{ message }} 
+    </h5>
   </q-page>
 </template>
 
