@@ -8,9 +8,11 @@
       @keyup.esc="clearMessage"
       @keyup.enter="alertMessage"
       v-autofocus
-    />
+      :style="errorStyle" />
 
     <button @click="clearMessage">Clear</button>
+
+    <div> {{ message.length }} </div>
 
     <h5 v-if="message.length" class="border-grey">{{ message }}</h5>
     <h6 v-else>Aucun Message saisi 😟</h6>
@@ -33,6 +35,15 @@ export default {
     messageUppercase() {
       console.log("messageUppercase was fired");
       return this.message.toUpperCase() + " " + this.counter;
+    },
+    // eslint-disable-next-line vue/return-in-computed-property
+    errorStyle() {
+      if (this.message.length > 22) {
+        return {
+          'color' : 'red',
+          'background' : 'pink'          
+        }
+      }
     }
   },
   methods: {
@@ -59,7 +70,15 @@ export default {
 </script>
 
 <style>
-.border-grey {
-  border: 1px solid grey;
-}
+  .border-grey {
+    border: 1px solid grey;
+  }
+  input, button {
+    font-size: 23px;
+  }
+  .error {
+    color: red;
+    background: pink;
+  }
+
 </style>
