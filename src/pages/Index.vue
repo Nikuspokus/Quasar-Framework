@@ -1,15 +1,22 @@
 <template>
   <q-page padding>
-    <input v-model="message" 
-    @keyup.esc="clearMessage" 
-    @keyup.enter="alertMessage"/>
+    <button style="position: absolute; right: 10px" @click="counter++">
+      {{ counter }}
+    </button>
+    <input
+      v-model="message"
+      @keyup.esc="clearMessage"
+      @keyup.enter="alertMessage"
+    />
 
     <button @click="clearMessage">Clear</button>
 
-    <h5 
-    v-show="message.length"
-    class="border-grey">{{ message }} 
-    </h5>
+    <h5 v-if="message.length" class="border-grey">{{ message }}</h5>
+    <h6 v-else>Aucun Message saisi 😟</h6>
+    <hr />
+
+    <p>Uppercase message: {{ messageUppercase }}</p>
+    <p>Lowercase message: {{ message | messageLowercase }}</p>
   </q-page>
 </template>
 
@@ -17,8 +24,15 @@
 export default {
   data() {
     return {
-      message: "I love Vue.JS so hard !!"
+      message: "I love Vue.JS so hard !!",
+      counter: 0
     };
+  },
+  computed: {
+    messageUppercase() {
+      console.log("messageUppercase was fired");
+      return this.message.toUpperCase() + " " + this.counter;
+    }
   },
   methods: {
     clearMessage() {
@@ -27,12 +41,17 @@ export default {
     alertMessage() {
       alert(this.message);
     }
+  },
+  filters: {
+    messageLowercase(value) {
+      return value.toLowerCase()
+    }
   }
 };
 </script>
 
 <style>
-  .border-grey {
-    border: 1px solid grey;
-  }
+.border-grey {
+  border: 1px solid grey;
+}
 </style>
