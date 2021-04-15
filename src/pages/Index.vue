@@ -8,7 +8,8 @@
       @keyup.esc="clearMessage"
       @keyup.enter="alertMessage"
       v-autofocus
-      :style="errorStyle" />
+      :class="{ 'error' : message.length > 22 }"
+      ref="messageInput" />
 
     <button @click="clearMessage">Clear</button>
 
@@ -27,7 +28,7 @@
 export default {
   data() {
     return {
-      message: "I love Vue.JS so hard !!",
+      message: "I love Vue.JS so hard!",
       counter: 0
     };
   },
@@ -66,24 +67,10 @@ export default {
       }
     }
   },
-  beforeCreate() {
-    console.log('beforeCreate');
-  },
-  created() {
-    console.log('created');
-  },
-  beforeMount() {
-    console.log('beforeMount');
-  },
   mounted() {
-    console.log('Mounted');
+    console.log( this.$refs )
+    this.$refs.messageInput.className = ' bg-green '
   },
-  beforeUpdate() {
-    console.log('beforeUpdate');
-  },
-  updated() {
-    console.log('updated');
-  }
 };
 </script>
 
