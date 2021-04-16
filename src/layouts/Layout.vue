@@ -19,20 +19,21 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer >
+    <q-footer>
       <q-tabs>
         <q-route-tab
-        v-for="nav in navs"
-        :key="nav.key"
-          :to="nav.to" 
+          v-for="nav in navs"
+          :key="nav.key"
+          :to="nav.to"
           :icon="nav.icon"
-          :label="nav.label" />
-
+          :label="nav.label"
+        />
       </q-tabs>
     </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
+      :breakpoint="767"
       show-if-above
       bordered
       content-class="bg-grey-1"
@@ -41,17 +42,12 @@
         <q-item-label header class="text-grey-8">
           Navigation
         </q-item-label>
-        <q-item 
-          v-for="nav in navs"
-          :key="nav.key"
-          :to="nav.to" 
-          exact 
-          clickable>
+        <q-item v-for="nav in navs" :key="nav.key" :to="nav.to" exact clickable>
           <q-item-section avatar>
             <q-icon :name="nav.icon" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{nav.label}}</q-item-label>
+            <q-item-label>{{ nav.label }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -72,24 +68,32 @@ export default {
       navs: [
         {
           key: 1,
-          label: 'Todo',
-          icon: 'list',
-          to: '/'
+          label: "Todo",
+          icon: "list",
+          to: "/"
         },
         {
           key: 2,
-          label: 'Settings',
-          icon: 'settings',
-          to: '/settings'
+          label: "Settings",
+          icon: "settings",
+          to: "/settings"
         },
         {
           key: 3,
-          label: 'About',
-          icon: 'info',
-          to: '/about'
+          label: "About",
+          icon: "info",
+          to: "/about"
         }
       ]
     };
   }
 };
 </script>
+
+<style>
+  @media screen and (min-width: 768px) {
+    .q-footer {
+      display: none;
+    }
+}
+</style>
