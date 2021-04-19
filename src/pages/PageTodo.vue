@@ -27,7 +27,7 @@ export default {
       tasks:[
         {
           id: 1,
-          name: 'Go to shop',
+          name: 'Go to shop store',
           completed: false
         },
         {
